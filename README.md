@@ -1,68 +1,67 @@
 # video-conferencing
 Project for building a real-time video conferencing solution.
 # Simple Video Conferencing Application
-
-This project implements a basic video conferencing application using Python and the `vidstream` library. It allows for video and audio streaming, as well as screen sharing, between two connected parties. The application provides both client and server functionalities and uses a simple Flask web interface to initiate connections.
-
-## Features
-
-* **Video and Audio Streaming:** Real-time transmission of camera and microphone feeds.
-* **Screen Sharing:** Ability to share the contents of the user's screen.
-* **Client/Server Architecture:** Supports both client and server roles for establishing connections.
-* **Simple User Interface:** Uses `tkinter` for basic desktop application windows.
-* **Web-based Initiation:** A Flask web application provides an easy way to start client or server instances.
-
-## Prerequisites
-
-* Python 3.x
-* `pip` (Python package installer)
-
-## Installation
-
-1.  **Clone the repository:**
+This project provides a basic video conferencing application using Python and the `vidstream` library. It allows for video and audio streaming, as well as screen sharing.
+## Table of Contents
+1.  [Setup and Run](#setup-and-run)
+2.  [Dependencies](#dependencies)
+3.  [Configuration](#configuration)
+4.  [Screenshots/Demo](#screenshotsdemo)
+## 1. Setup and Run
+**Prerequisites:**
+* Python 3.x installed
+* `pip` (Python's package installer) installed
+**Steps:**
+1.  **Clone the repository (or download the files):**
     ```bash
-    git clone <your_repository_url>
-    cd <your_repository_directory>
+    # If using Git:
+    git clone <repository_url>
+    # Or download the files directly and extract them
     ```
-
-2.  **Install the required Python packages:**
+2.  **Install Dependencies:**
+    Navigate to the project directory in your terminal and install the required Python packages:
     ```bash
-    pip install Flask vidstream 
+    pip install Flask vidstream
     ```
-
-## Usage
-
-1.  **Start the Flask web application:**
+3.  **Run the Application:**
+    * Start the main application using Flask:
+        ```bash
+        python app.py
+        ```
+    * This will start a Flask development server. Open your web browser and go to `http://0.0.0.0:5000/`
+4.  **Connect Clients and Servers:**
+    * The web page provides two buttons: "Connect as Client" and "Connect as Server".
+    * Clicking these buttons will start the respective client or server scripts.
+    * **Important:** You'll need to provide the "Target IP" in the client and server windows to establish a connection.  Ensure the server's IP address is entered into the client, and if you have multiple clients, they would generally connect to the same server IP.
+## 2. Dependencies
+* **Flask:** A web framework for Python (used for the initial web interface).
     ```bash
-    python app.py
+    pip install Flask
     ```
-    This will start a web server at `http://0.0.0.0:5000/`.
-
-2.  **Open the web interface in your browser:**
-    Navigate to `http://0.0.0.0:5000/`.
-
-3.  **Choose to connect as either Client or Server:**
-    * Click "Connect as Server" to start the server application. The server needs to be started first so that the client can connect to it.
-    * Click "Connect as Client" to start the client application.  You'll need to provide the server's IP address in the client application's window.
-
-4.  **In the Client or Server window:**
-    * Enter the "Target IP" (the IP address of the other party).
-    * Click the buttons to start listening for connections, and to start camera, screen sharing, or audio streams as needed.
-
-## File Structure
-
-* `app.py`:  Flask application to launch the client and server.
-* `client.py`:  Client-side application for video conferencing.
-* `index.html`:  HTML page for the Flask application.
-* `server.py`:  Server-side application for video conferencing.
-
-## Important Notes
-
-* **Network Configuration:** Ensure that your network allows communication between the client and server (firewall settings, etc.). Both the server and the client must be on the same network or have appropriate port forwarding configured.
-* **IP Addresses:** You will need to know the IP address of the machine running the server to connect from the client.
-* **Error Handling:** This is a basic implementation and may lack robust error handling.
-* **Security:** This project does not include security features like encryption.  Do not use it for sensitive communications without adding appropriate security measures.
-
-## Disclaimer
-
-This project is intended for educational or demonstration purposes.  It is not production-ready.
+* **vidstream:** A library for easy video streaming in Python.
+    ```bash
+    pip install vidstream
+    ```
+* **tkinter:** Python's standard GUI library (used for the client and server interfaces).  This usually comes with Python, so you might not need to install it separately.
+## 3. Configuration
+* **IP Addresses:** The most crucial configuration is the correct IP address.
+    * Find the IP address of the machine you want to act as the server. You can use commands like `ipconfig` (Windows) or `ifconfig` (Linux/macOS).
+    * Enter this IP address into the "Target IP" field in both the client and server windows as needed.
+* **Ports:** The application uses specific ports for different streams:
+    * Server Streaming Port: 9999
+    * Server Audio Receive Port: 8888
+    * Client Streaming Port: 7777
+    * Client Audio Receive Port: 6666
+    * Camera Stream Port: 9999 (Client sends to Server)
+    * Screen Share Port: 8888 (Client sends to Server)
+    * Audio Stream Port: 6666 (Both directions)
+    * Ensure these ports are not blocked by your firewall.
+## 4. Screenshots/Demo
+**(Please add screenshots or a link to a demo video here to show the application in action.)**
+* **Screenshot 1:** Main page with "Connect as Client" and "Connect as Server" buttons.
+    ``` ```
+* **Screenshot 2:** Client window with the Target IP input and buttons.
+    ``` ```
+* **Screenshot 3:** Server window with the Target IP input and buttons.
+    ``` ```
+**Note:** This is a basic implementation and may require further development for production use (e.g., error handling, security, scalability).
